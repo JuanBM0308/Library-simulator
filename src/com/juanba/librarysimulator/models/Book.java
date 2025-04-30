@@ -29,4 +29,8 @@ public class Book extends LibraryMaterial {
         super.returnLibraryMaterial(title);
         System.out.println("Esperamos hayas disfrutado del libro (" + title + ")");
     }
+
+    public String getIsbn() {
+        return isbn;
+    }
 }

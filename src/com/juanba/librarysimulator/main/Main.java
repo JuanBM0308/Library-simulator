@@ -14,6 +14,7 @@ public class Main {
         Book book1 = new Book("Verde fue mi selva", "Edna Iturralde", "978-84-9916-901-9");
         Book book2 = new Book("El principito", "Antoine de Saint-Exupéry", "576-23-7642-543-6");
         Book book3 = new Book("Pie de Bruja (Carmina Nocturna 3)", "Carolina Andújar", "245-77-5436-976-0");
+        Book book4 = new Book("Verde fue mi selva", "Edna Iturralde", "112-23-6547-005-4");
 
         Magazine magazine1 = new Magazine("El buen pintor", "Blue radio", 64);
         Magazine magazine2 = new Magazine("Farandula con Richie", "Vea", 66);
@@ -23,6 +24,7 @@ public class Main {
         library.addMaterial(book1);
         library.addMaterial(book2);
         library.addMaterial(book3);
+        library.addMaterial(book4);
 
         library.addMaterial(magazine1);
         library.addMaterial(magazine2);
@@ -37,7 +39,7 @@ public class Main {
 
         library.listMaterial();
 
-        System.out.println("Digite el material a regresar:");
+        System.out.println("Digite el ID del material a regresar:");
         String petitionReturn = scanner.nextLine();
         library.returnMaterial(petitionReturn);
 

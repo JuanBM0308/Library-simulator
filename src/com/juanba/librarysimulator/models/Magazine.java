@@ -29,4 +29,8 @@ public class Magazine extends LibraryMaterial {
         super.returnLibraryMaterial(title);
         System.out.println("Esperamos hayas disfrutado de la revista (" + title + ")");
     }
+
+    public int getNumber() {
+        return number;
+    }
 }
