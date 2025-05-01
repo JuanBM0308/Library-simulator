@@ -4,7 +4,7 @@ import com.juanba.librarysimulator.models.Book;
 import com.juanba.librarysimulator.models.Library;
 import com.juanba.librarysimulator.models.Magazine;
 
-import java.sql.SQLOutput;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -19,6 +19,7 @@ public class Main {
         Magazine magazine1 = new Magazine("El buen pintor", "Blue radio", 64);
         Magazine magazine2 = new Magazine("Farandula con Richie", "Vea", 66);
         Magazine magazine3 = new Magazine("La pasion del futbol", "Win Sports", 89);
+        Magazine magazine4 = new Magazine("La pasion del futbol", "Win Sports", 90);
 
         Library library = new Library();
         library.addMaterial(book1);
@@ -29,20 +30,56 @@ public class Main {
         library.addMaterial(magazine1);
         library.addMaterial(magazine2);
         library.addMaterial(magazine3);
+        library.addMaterial(magazine4);
 
-        System.out.println("\nMaterial disponible:");
-        library.listMaterial();
+        System.out.println("\n***************************************************");
+        System.out.println("* Bienvenido a 'Tu biblioteca online'      *");
+        System.out.println("***************************************************");
+        System.out.println("|    Opciones    |           Descripcion          |");
+        System.out.println("|----------------|--------------------------------|");
+        System.out.println("|       1        |        Listar materiales       |");
+        System.out.println("|       2        |     Pedir material prestado    |");
+        System.out.println("|       3        |    Regresar material prestado  |");
+        System.out.println("|----------------|--------------------------------|");
+        System.out.println("|       4        |       Cerrar el programa       |");
+        System.out.println("--------------------------------------------------");
 
-        System.out.println("Digite el nombre del material a pedir prestado:");
-        String petitionBook = scanner.nextLine();
-        library.lendMaterial(petitionBook);
+        int userOption;
+        try {
+            do {
+                System.out.println("\nDigite su opcion deseada: ");
+                while (!scanner.hasNextInt()) {
+                    System.out.println("Por favor, ingrese un numero.");
+                    scanner.next();
+                }
+                userOption = scanner.nextInt();
+                scanner.nextLine();
 
-        library.listMaterial();
-
-        System.out.println("Digite el ID del material a regresar:");
-        String petitionReturn = scanner.nextLine();
-        library.returnMaterial(petitionReturn);
-
-        library.listMaterial();
+                switch (userOption) {
+                    case 1:
+                        library.listMaterial();
+                        break;
+                    case 2:
+                        System.out.println("\nDigite el nombre del material a pedir prestado:");
+                        String petitionMaterial = scanner.nextLine();
+                        library.lendMaterial(petitionMaterial);
+                        break;
+                    case 3:
+                        System.out.println("Digite el ID del material a regresar:");
+                        String petitionReturn = scanner.nextLine();
+                        library.returnMaterial(petitionReturn);
+                        break;
+                    case 4:
+                        System.out.println("Cerrando el programa. ¡Hasta luego!");
+                        break;
+                    default:
+                        System.out.println("** Ingrese una opcion disponible **");
+                }
+            } while (userOption != 4);
+        } catch (InputMismatchException e) {
+            System.out.println("No se ha ingresado un numero de opcion correacto.");
+        } finally {
+            scanner.close();
+        }
     }
 }
